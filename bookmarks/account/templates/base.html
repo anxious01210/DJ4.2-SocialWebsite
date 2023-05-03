@@ -11,6 +11,14 @@
         <link href="{% static "css/base.css" %}" rel="stylesheet">
     </head>
     <body>
+        <div>
+            <style contenteditable style="display: block;">
+                html {
+                    background: #BADA55; 
+                }
+            </style>
+        </div>
+        
         <div id="header">
             <span class="logo">Bookmarks</span>
             {% if request.user.is_authenticated %}
