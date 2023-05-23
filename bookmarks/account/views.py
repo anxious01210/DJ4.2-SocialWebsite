@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Profile
 from django.contrib import messages
 
+
 # Create your views here.
 
 # def user_login(request):
@@ -25,10 +26,11 @@ from django.contrib import messages
 #     else:
 #         form = LoginForm()
 #         return render(request, 'account/login.html', {'form': form})
-    
+
 @login_required
 def dashboard(request):
     return render(request, 'account/dashboard.html', {'section': 'dashboard'})
+
 
 def register(request):
     if request.method == 'POST':
@@ -45,7 +47,8 @@ def register(request):
     else:
         user_form = UserRegistrationForm()
         return render(request, 'account/register.html', {'user_form': user_form})
-    
+
+
 # @login_required
 # def edit(request):
 #     if request.method == 'POST':
