@@ -16,6 +16,7 @@ class Profile(models.Model):
 
 
 class Contact(models.Model):
+    objects = models.Manager()
     user_from = models.ForeignKey('auth.User', related_name='rel_from_set', on_delete=models.CASCADE)
     user_to = models.ForeignKey('auth.User', related_name='rel_to_set', on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
@@ -30,4 +31,4 @@ class Contact(models.Model):
 
 # add following field to User dynamically
 user_model = get_user_model()
-user_model.add_to_class('following', models.ManyToManyField('self', through=Contact, related_name='follower', symmetrical=False))
+user_model.add_to_class('following', models.ManyToManyField('self', through=Contact, related_name='followers', symmetrical=False))
