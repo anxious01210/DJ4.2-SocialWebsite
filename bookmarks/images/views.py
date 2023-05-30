@@ -6,6 +6,7 @@ from django.contrib import messages
 from .forms import ImageCreateForm
 from .models import Image
 from django.views.decorators.http import require_POST
+from actions.utils import create_action
 
 # Create your views here.
 @login_required
@@ -20,6 +21,7 @@ def image_create(request):
             print('request.user:  ==>  ', request)
             new_image.user = request.user
             new_image.save()
+            create_action(request.user, 'bookmarked image', new_image)
             messages.success(request, 'The new image is added successfully.')
             # redirect to new created item detail view
             return redirect(new_image.get_absolute_url())
@@ -44,6 +46,7 @@ def image_like(request):
             image = Image.objects.get(id=image_id)
             if action == 'like':
                 image.users_like.add(request.user)
+                create_action(request.user, 'likes', image)
             else:
                 image.users_like.remove(request.user)
             return JsonResponse({'status': 'ok'})

@@ -6,7 +6,6 @@ from django.utils.text import slugify
 
 # Create your models here.
 class Image(models.Model):
-
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='images_created', on_delete=models.CASCADE)    
     title = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200, blank=True)
@@ -15,6 +14,7 @@ class Image(models.Model):
     description = models.TextField(blank=True)
     created = models.DateTimeField(auto_now_add=True)
     users_like = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='images_liked', blank=True)
+    objects = models.Manager()
 
     class Meta:
         indexes = [
