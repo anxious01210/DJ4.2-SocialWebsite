@@ -196,3 +196,9 @@ INTERNAL_IPS = [
 # DEBUG_TOOLBAR_CONFIG = {
 #     "SHOW_TOOLBAR_CALLBACK" : show_toolbar,
 # }
+
+# Redis Server settings _ By default, a client is connected to database 0. The number
+# of available Redis databases is set to 16, but you can change this in the redis.conf configuration file.
+REDIS_HOST = 'localhost'
+REDIS_PORT = 6379
+REDIS_DB = 0
